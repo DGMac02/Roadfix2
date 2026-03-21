@@ -1,0 +1,92 @@
+@page "/my-service-history"
+@using System.Security.Claims
+
+<div class="history-container">
+    <div class="page-header">
+        <h1>My Service Requests</h1>
+        <p class="text-muted">Personalized history for <strong>@CustomerEmail</strong></p>
+    </div>
+
+    <div class="customer-summary-ribbon">
+        <div class="summary-item">
+            <span class="summary-label">Total Requests</span>
+            <span class="summary-value">@CustomerOrders.Count</span>
+        </div>
+        <div class="summary-item">
+            <span class="summary-label">Resolved</span>
+            <span class="summary-value">@CustomerOrders.Count(o => o.Status == "Completed")</span>
+        </div>
+    </div>
+
+    <div class="history-list">
+        @if (!CustomerOrders.Any())
+        {
+            <div class="text-center py-5">
+                <p>You haven't placed any orders yet.</p>
+                <NavLink href="/order-services" class="btn btn-primary">Report Your First Pothole</NavLink>
+            </div>
+        }
+        else
+        {
+            @foreach (var order in CustomerOrders)
+            {
+                <div class="history-card @GetStatusBorder(order.Status)">
+                    <div class="card-content">
+                        <div class="service-info">
+                            <span class="order-id">#RF-@order.Id.ToString().Substring(0,5)</span>
+                            <h5>@order.ServiceType</h5> @* Matches source select: Detection, Repair, etc. *@
+                            <div class="service-meta">
+                                <strong>Location:</strong> @order.StreetAddress, @order.City [cite: 6, 8] <br />
+                                <strong>Urgency:</strong> @order.Urgency  <br />
+                                @if (order.IsInsuranceClaim) { <span class="badge bg-info text-dark">Insurance Purpose</span> } 
+                            </div>
+                        </div>
+                        
+                        <div class="text-end">
+                            <span class="status-pill @GetStatusClass(order.Status)">@order.Status</span>
+                            <div class="service-meta mt-2">Placed: @order.Date.ToShortDateString()</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+@code {
+    private string CustomerEmail = "dumisane@example.com"; // In production, get this from AuthenticationState
+
+    private List<CustomerOrder> CustomerOrders = new();
+
+    protected override void OnInitialized()
+    {
+        // This is where you would call your C# service: 
+        // CustomerOrders = await RoadFixService.GetOrdersByCustomerAsync(CustomerEmail);
+        
+        LoadMockData();
+    }
+
+    private void LoadMockData()
+    {
+        CustomerOrders = new()
+        {
+            new() { Id = Guid.NewGuid(), Date = DateTime.Now.AddDays(-1), ServiceType = "Pothole Repair", StreetAddress = "123 Main St", City = "Pretoria", Urgency = "Urgent", Status = "Pending", IsInsuranceClaim = true },
+            new() { Id = Guid.NewGuid(), Date = DateTime.Now.AddDays(-14), ServiceType = "Pothole Detection Only", StreetAddress = "45 High Ridge Way", City = "Johannesburg", Urgency = "Normal", Status = "Completed", IsInsuranceClaim = false }
+        };
+    }
+
+    private string GetStatusBorder(string status) => status == "Completed" ? "border-completed" : "border-pending";
+    private string GetStatusClass(string status) => status == "Completed" ? "bg-completed" : "bg-pending";
+
+    public class CustomerOrder
+    {
+        public Guid Id { get; set; }
+        public DateTime Date { get; set; }
+        public string ServiceType { get; set; } = ""; // 
+        public string StreetAddress { get; set; } = ""; // 
+        public string City { get; set; } = ""; // [cite: 8]
+        public string Urgency { get; set; } = ""; // 
+        public string Status { get; set; } = "";
+        public bool IsInsuranceClaim { get; set; } // 
+    }
+}

@@ -1,0 +1,727 @@
+/* _content/RoadFix/Components/Layout/MainLayout.razor.rz.scp.css */
+.page[b-e4gbemymqm] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+main[b-e4gbemymqm] {
+    flex: 1;
+}
+
+/*.sidebar {
+    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+}*/
+
+.top-row[b-e4gbemymqm] {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #d6d5d5;
+    justify-content: flex-end;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+}
+
+    .top-row[b-e4gbemymqm]  a, .top-row[b-e4gbemymqm]  .btn-link {
+        white-space: nowrap;
+        /*margin-left: 1.5rem;*/
+        text-decoration: none;
+    }
+
+    .top-row[b-e4gbemymqm]  a:hover, .top-row[b-e4gbemymqm]  .btn-link:hover {
+        text-decoration: underline;
+    }
+
+    .top-row[b-e4gbemymqm]  a:first-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+@media (max-width: 640.98px) {
+    .top-row[b-e4gbemymqm] {
+        justify-content: space-between;
+    }
+
+    /*.top-row ::deep a, .top-row ::deep .btn-link {
+        margin-left: 0;
+    }*/
+}
+
+/*@media (min-width: 641px) {
+    .page {
+        flex-direction: row;
+    }
+
+    .sidebar {
+        width: 250px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+
+    .top-row {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .top-row.auth ::deep a:first-child {
+        flex: 1;
+        text-align: right;
+        width: 0;
+    }
+
+    .top-row, article {
+        padding-left: 2rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+*/
+#blazor-error-ui[b-e4gbemymqm] {
+    color-scheme: light only;
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss[b-e4gbemymqm] {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+/* _content/RoadFix/Components/Layout/NavMenu.razor.rz.scp.css */
+.navbar-toggler[b-7qhclvm8rl] {
+    appearance: none;
+    cursor: pointer;
+    width: 3.5rem;
+    height: 2.5rem;
+    color: white;
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") no-repeat center/1.75rem rgba(255, 255, 255, 0.1);
+}
+
+.navbar-toggler:checked[b-7qhclvm8rl] {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.top-row[b-7qhclvm8rl] {
+    min-height: 3.5rem;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.navbar-brand[b-7qhclvm8rl] {
+    font-size: 1.1rem;
+}
+
+.bi[b-7qhclvm8rl] {
+    display: inline-block;
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+    top: -1px;
+    background-size: cover;
+}
+
+.bi-house-door-fill-nav-menu[b-7qhclvm8rl] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-house-door-fill' viewBox='0 0 16 16'%3E%3Cpath d='M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z'/%3E%3C/svg%3E");
+}
+
+.bi-plus-square-fill-nav-menu[b-7qhclvm8rl] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-plus-square-fill' viewBox='0 0 16 16'%3E%3Cpath d='M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z'/%3E%3C/svg%3E");
+}
+
+.bi-list-nested-nav-menu[b-7qhclvm8rl] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-list-nested' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M4.5 11.5A.5.5 0 0 1 5 11h10a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 1 3h10a.5.5 0 0 1 0 1H1a.5.5 0 0 1-.5-.5z'/%3E%3C/svg%3E");
+}
+
+.nav-item[b-7qhclvm8rl] {
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+}
+
+    .nav-item:first-of-type[b-7qhclvm8rl] {
+        padding-top: 1rem;
+    }
+
+    .nav-item:last-of-type[b-7qhclvm8rl] {
+        padding-bottom: 1rem;
+    }
+
+    .nav-item[b-7qhclvm8rl]  .nav-link {
+        color: #d7d7d7;
+        background: none;
+        border: none;
+        border-radius: 4px;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        line-height: 3rem;
+        width: 100%;
+    }
+
+.nav-item[b-7qhclvm8rl]  a.active {
+    background-color: rgba(255,255,255,0.37);
+    color: white;
+}
+
+.nav-item[b-7qhclvm8rl]  .nav-link:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.nav-scrollable[b-7qhclvm8rl] {
+    display: none;
+}
+
+.navbar-toggler:checked ~ .nav-scrollable[b-7qhclvm8rl] {
+    display: block;
+}
+
+@media (min-width: 641px) {
+    .navbar-toggler[b-7qhclvm8rl] {
+        display: none;
+    }
+
+    .nav-scrollable[b-7qhclvm8rl] {
+        /* Never collapse the sidebar for wide screens */
+        display: block;
+
+        /* Allow sidebar to scroll for tall menus */
+        height: calc(100vh - 3.5rem);
+        overflow-y: auto;
+    }
+}
+/* _content/RoadFix/Components/Pages/Dashboard.razor.rz.scp.css */
+.dashboard-wrapper[b-ntr8es5c3c] {
+    display: flex;
+    min-height: 90vh;
+    background-color: #f4f7f9;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 20px;
+}
+
+.dashboard-sidebar[b-ntr8es5c3c] {
+    width: 260px;
+    background: #ffffff;
+    border-right: 1px solid #e0e6ed;
+    padding: 2rem 1rem;
+}
+
+.user-profile-brief[b-ntr8es5c3c] {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.avatar[b-ntr8es5c3c] {
+    width: 60px;
+    height: 60px;
+    background: #0d6efd;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto 0.5rem;
+}
+
+.nav-link[b-ntr8es5c3c] {
+    color: #495057;
+    border: none;
+    background: none;
+    text-align: left;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    transition: all 0.2s;
+}
+
+.nav-link.active[b-ntr8es5c3c] {
+    background: #e7f1ff;
+    color: #0d6efd;
+    font-weight: 600;
+}
+
+.dashboard-content[b-ntr8es5c3c] {
+    flex: 1;
+    padding: 2.5rem;
+}
+
+.content-card[b-ntr8es5c3c] {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+/* _content/RoadFix/Components/Pages/Login.razor.rz.scp.css */
+/* Container for the entire viewport */
+.login-page-wrapper[b-pwb2g90yzp] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 1rem;
+}
+
+/* The Login Card */
+.login-card[b-pwb2g90yzp] {
+    background: rgba(255, 255, 255, 0.95);
+    width: 100%;
+    max-width: 420px;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Header Styling */
+.login-header[b-pwb2g90yzp] {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-header h3[b-pwb2g90yzp] {
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+}
+
+/* Form Elements */
+.form-floating[b-pwb2g90yzp] {
+    margin-bottom: 1.25rem;
+}
+
+.form-control[b-pwb2g90yzp] {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus[b-pwb2g90yzp] {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15);
+}
+
+/* Custom Button */
+.btn-primary-custom[b-pwb2g90yzp] {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #0d6efd;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: transform 0.1s, background-color 0.2s;
+}
+
+.btn-primary-custom:hover[b-pwb2g90yzp] {
+    background-color: #0b5ed7;
+    transform: translateY(-1px);
+}
+
+.btn-primary-custom:active[b-pwb2g90yzp] {
+    transform: translateY(0);
+}
+
+/* Validation Messages (Blazor Specific) */
+.validation-message[b-pwb2g90yzp] {
+    font-size: 0.85rem;
+    color: #dc3545;
+    margin-top: 0.25rem;
+}
+
+/* Utility Links */
+.footer-links[b-pwb2g90yzp] {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.footer-links a[b-pwb2g90yzp] {
+    color: #0d6efd;
+    text-decoration: none;
+}
+
+.footer-links a:hover[b-pwb2g90yzp] {
+    text-decoration: underline;
+}
+/* _content/RoadFix/Components/Pages/LoginINV.razor.rz.scp.css */
+/* Container for the entire viewport */
+.login-page-wrapper[b-0n55jnoiua] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 1rem;
+}
+
+/* The Login Card */
+.login-card[b-0n55jnoiua] {
+    background: rgba(255, 255, 255, 0.95);
+    width: 100%;
+    max-width: 420px;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Header Styling */
+.login-header[b-0n55jnoiua] {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-header h3[b-0n55jnoiua] {
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+}
+
+/* Form Elements */
+.form-floating[b-0n55jnoiua] {
+    margin-bottom: 1.25rem;
+}
+
+.form-control[b-0n55jnoiua] {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus[b-0n55jnoiua] {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15);
+}
+
+/* Custom Button */
+.btn-primary-custom[b-0n55jnoiua] {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #0d6efd;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: transform 0.1s, background-color 0.2s;
+}
+
+.btn-primary-custom:hover[b-0n55jnoiua] {
+    background-color: #0b5ed7;
+    transform: translateY(-1px);
+}
+
+.btn-primary-custom:active[b-0n55jnoiua] {
+    transform: translateY(0);
+}
+
+/* Validation Messages (Blazor Specific) */
+.validation-message[b-0n55jnoiua] {
+    font-size: 0.85rem;
+    color: #dc3545;
+    margin-top: 0.25rem;
+}
+
+/* Utility Links */
+.footer-links[b-0n55jnoiua] {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.footer-links a[b-0n55jnoiua] {
+    color: #0d6efd;
+    text-decoration: none;
+}
+
+.footer-links a:hover[b-0n55jnoiua] {
+    text-decoration: underline;
+}
+/* _content/RoadFix/Components/Pages/Orderservices.razor.rz.scp.css */
+/* Container and Background */
+.container[b-noij1r4ml7] {
+    max-width: 900px;
+    animation: fadeIn-b-noij1r4ml7 0.5s ease-in-out;
+}
+
+@keyframes fadeIn-b-noij1r4ml7 {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Page Headers */
+h1[b-noij1r4ml7] {
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+}
+
+p.text-center[b-noij1r4ml7] {
+    color: #6c757d;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* The Service Request Card */
+.card[b-noij1r4ml7] {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+.card-body[b-noij1r4ml7] {
+    padding: 3rem;
+}
+
+/* Form Labels and Inputs */
+.form-label[b-noij1r4ml7] {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.form-control[b-noij1r4ml7], .form-select[b-noij1r4ml7] {
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    border: 1px solid #dee2e6;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus[b-noij1r4ml7], .form-select:focus[b-noij1r4ml7] {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.1);
+    outline: none;
+}
+
+/* Textarea specific */
+textarea.form-control[b-noij1r4ml7] {
+    resize: none;
+}
+
+/* Checkbox Styling */
+.form-check[b-noij1r4ml7] {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.form-check-input[b-noij1r4ml7] {
+    cursor: pointer;
+    width: 1.2em;
+    height: 1.2em;
+    margin-top: 0.25em;
+}
+
+.form-check-label[b-noij1r4ml7] {
+    cursor: pointer;
+    padding-left: 0.5rem;
+    color: #4a4a4a;
+}
+
+/* Button Styling */
+.btn-lg[b-noij1r4ml7] {
+    padding: 0.8rem 2.5rem;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary[b-noij1r4ml7] {
+    background-color: #0d6efd;
+    border: none;
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
+}
+
+.btn-primary:hover[b-noij1r4ml7] {
+    background-color: #0b5ed7;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(13, 110, 253, 0.3);
+}
+
+.btn-outline-secondary[b-noij1r4ml7] {
+    border: 2px solid #dee2e6;
+    color: #6c757d;
+}
+
+.btn-outline-secondary:hover[b-noij1r4ml7] {
+    background-color: #f8f9fa;
+    color: #343a40;
+    border-color: #ced4da;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card-body[b-noij1r4ml7] {
+        padding: 1.5rem;
+    }
+    
+    .btn-lg[b-noij1r4ml7] {
+        width: 100%;
+        margin-bottom: 1rem;
+        margin-right: 0 !important;
+    }
+}
+/* _content/RoadFix/Components/Pages/Register.razor.rz.scp.css */
+/* Container for the entire viewport */
+.register-page-wrapper[b-c1yvdkke6t] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 2rem 1rem;
+}
+
+/* The Register Card - slightly wider than Login */
+.register-card[b-c1yvdkke6t] {
+    background: rgba(255, 255, 255, 0.95);
+    width: 100%;
+    max-width: 500px;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: fadeIn-b-c1yvdkke6t 0.4s ease-out;
+}
+
+@keyframes fadeIn-b-c1yvdkke6t {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header Styling */
+.register-header[b-c1yvdkke6t] {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.register-header h3[b-c1yvdkke6t] {
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+}
+
+/* Form Elements */
+.form-floating[b-c1yvdkke6t] {
+    margin-bottom: 1rem;
+}
+
+.form-control[b-c1yvdkke6t] {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus[b-c1yvdkke6t] {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15);
+}
+
+/* Checkbox Section */
+.form-check[b-c1yvdkke6t] {
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    color: #4a4a4a;
+}
+
+.form-check-input:checked[b-c1yvdkke6t] {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+/* Custom Button */
+.btn-primary-custom[b-c1yvdkke6t] {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #0d6efd;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: transform 0.1s, background-color 0.2s;
+}
+
+.btn-primary-custom:hover[b-c1yvdkke6t] {
+    background-color: #0b5ed7;
+    transform: translateY(-1px);
+}
+
+/* Validation Messages */
+.validation-message[b-c1yvdkke6t] {
+    font-size: 0.8rem;
+    color: #dc3545;
+    margin-top: 0.2rem;
+}
+
+.footer-links[b-c1yvdkke6t] {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.footer-links a[b-c1yvdkke6t] {
+    color: #0d6efd;
+    text-decoration: none;
+    font-weight: 500;
+}
+/* _content/RoadFix/Components/Pages/ServiceHistory.razor.rz.scp.css */
+.customer-summary-ribbon[b-oj9jfyulfj] {
+    display: flex;
+    gap: 2rem;
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    border: 1px solid #e9ecef;
+}
+
+.summary-item[b-oj9jfyulfj] {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-label[b-oj9jfyulfj] {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #6c757d;
+    font-weight: 700;
+}
+
+.summary-value[b-oj9jfyulfj] {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0d6efd;
+}
+
+/* History List specific to the Customer */
+.order-id[b-oj9jfyulfj] {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    color: #adb5bd;
+}

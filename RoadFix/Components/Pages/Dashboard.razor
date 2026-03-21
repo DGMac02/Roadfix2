@@ -1,0 +1,99 @@
+@page "/dashboard"
+@using Roadfix2.Services
+@inject AuthService AuthService
+@inject NavigationManager Navigation
+
+<div class="dashboard-wrapper">
+    <aside class="dashboard-sidebar">
+        <div class="user-profile-brief">
+            <div class="avatar">D</div>
+            <h5>Dumisane</h5>
+        </div>
+        <nav class="nav flex-column">
+            <button class="nav-link @(activeTab == "history" ? "active" : "")" @onclick='() => activeTab = "history"'>
+                <i class="bi bi-clock-history"></i> Order History
+            </button>
+            <button class="nav-link @(activeTab == "settings" ? "active" : "")" @onclick='() => activeTab = "settings"'>
+                <i class="bi bi-person-gear"></i> Profile Settings
+            </button>
+        </nav>
+    </aside>
+
+    <main class="dashboard-content">
+        @if (activeTab == "history")
+        {
+            <div class="content-card">
+                <h3>Order History & Statuses</h3>
+                <p class="text-muted">Track your pothole repair requests and download receipts.</p>
+                <div class="table-responsive mt-4">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Service</th>
+                                <th>Status</th>
+                                <th>Location</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in userOrders)
+                            {
+                                <tr>
+                                    <td>@order.ServiceType [cite: 12]</td>
+                                    <td><span class="badge @GetBadgeClass(order.Status)">@order.Status</span></td>
+                                    <td>@order.StreetAddress </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-dark">Receipt</button>
+                                        <button class="btn btn-sm btn-primary">Track</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+        else if (activeTab == "settings")
+        {
+            <div class="content-card">
+                <h3>Profile Settings</h3>
+                <div class="row mt-4">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" value="Dumisane" /> [cite: 3]
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-control" value="user@example.com" disabled /> [cite: 4]
+                    </div>
+                    <button class="btn btn-primary w-auto ms-3">Update Profile</button>
+                </div>
+            </div>
+        }
+    </main>
+</div>
+
+@code {
+    private string activeTab = "history";
+    private List<OrderViewModel> userOrders = new(); // Populate from Supabase
+
+    private string GetBadgeClass(string status) => status switch {
+        "Completed" => "bg-success",
+        "Pending" => "bg-warning",
+
+        _ => "bg-secondary"
+    };
+
+    // View Model based on your OrderServices.razor source
+    public class OrderViewModel {
+        public string ServiceType { get; set; } = "";
+        public string StreetAddress { get; set; } = ""; 
+        public string Status { get; set; } = "Pending";
+    }
+
+    private async Task LoadUserOrders()
+    {
+        // Fetch orders from Supabase for the logged-in user and populate userOrders list
+    }
+    
+}
