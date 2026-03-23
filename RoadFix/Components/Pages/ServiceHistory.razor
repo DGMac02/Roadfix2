@@ -1,10 +1,20 @@
-@page "/my-service-history"
+@page "/Historicservice"
+@using Supabase
+@inject Supabase.Client supabase
 @using System.Security.Claims
+@using Postgrest.Attributes
+@using Postgrest
+@using Roadfix2.Services
+@using Postgrest.Models
+@inject NavigationManager navigation
+
+@inject IJSRuntime JSRuntime
+
 
 <div class="history-container">
     <div class="page-header">
         <h1>My Service Requests</h1>
-        <p class="text-muted">Personalized history for <strong>@CustomerEmail</strong></p>
+        <p class="text-muted">Personalized history for <strong></strong></p>
     </div>
 
     <div class="customer-summary-ribbon">
@@ -33,12 +43,12 @@
                 <div class="history-card @GetStatusBorder(order.Status)">
                     <div class="card-content">
                         <div class="service-info">
-                            <span class="order-id">#RF-@order.Id.ToString().Substring(0,5)</span>
+                            <span class="order-id">#RF-@order.Id.ToString()</span>
                             <h5>@order.ServiceType</h5> @* Matches source select: Detection, Repair, etc. *@
                             <div class="service-meta">
-                                <strong>Location:</strong> @order.StreetAddress, @order.City [cite: 6, 8] <br />
+                                <strong>Location:</strong> @order.Adress <br />
                                 <strong>Urgency:</strong> @order.Urgency  <br />
-                                @if (order.IsInsuranceClaim) { <span class="badge bg-info text-dark">Insurance Purpose</span> } 
+                                @if (order.Insurance) { <span class="badge bg-info text-dark">Insurance Purpose</span> } 
                             </div>
                         </div>
                         
@@ -54,39 +64,67 @@
 </div>
 
 @code {
-    private string CustomerEmail = "dumisane@example.com"; // In production, get this from AuthenticationState
+    //private string CustomerEmail = "dumisane@example.com"; // In production, get this from AuthenticationState
 
-    private List<CustomerOrder> CustomerOrders = new();
+    private List<Order> CustomerOrders = new();
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         // This is where you would call your C# service: 
         // CustomerOrders = await RoadFixService.GetOrdersByCustomerAsync(CustomerEmail);
         
-        LoadMockData();
+        await LoadUserOrders();
     }
+private async Task LoadUserOrders()
+{
+    
+    var session = supabase.Auth.CurrentSession;
+    
+    if (session?.User != null)
+    {
+        // Parse the string ID from the session into a Guid
+        <!--var userId = Guid.Parse(session.User.Id);-->
+        string userId = session.User.Id;
 
+        var response = await supabase
+            .From<Order>()
+            .Filter("Cus_id", Postgrest.Constants.Operator.Equals, userId)
+            .Get();
+
+        CustomerOrders = response.Models;
+        StateHasChanged();
+    }
+    else
+    {
+        // Handle the case where there is no authenticated user
+        Console.WriteLine("No authenticated user found.");
+        navigation.NavigateTo("/login");
+    }
+}
     private void LoadMockData()
     {
-        CustomerOrders = new()
-        {
-            new() { Id = Guid.NewGuid(), Date = DateTime.Now.AddDays(-1), ServiceType = "Pothole Repair", StreetAddress = "123 Main St", City = "Pretoria", Urgency = "Urgent", Status = "Pending", IsInsuranceClaim = true },
-            new() { Id = Guid.NewGuid(), Date = DateTime.Now.AddDays(-14), ServiceType = "Pothole Detection Only", StreetAddress = "45 High Ridge Way", City = "Johannesburg", Urgency = "Normal", Status = "Completed", IsInsuranceClaim = false }
-        };
+        
     }
 
     private string GetStatusBorder(string status) => status == "Completed" ? "border-completed" : "border-pending";
     private string GetStatusClass(string status) => status == "Completed" ? "bg-completed" : "bg-pending";
+    [Table("Order")]
 
-    public class CustomerOrder
+    public class Order :BaseModel
     {
-        public Guid Id { get; set; }
-        public DateTime Date { get; set; }
-        public string ServiceType { get; set; } = ""; // 
-        public string StreetAddress { get; set; } = ""; // 
-        public string City { get; set; } = ""; // [cite: 8]
-        public string Urgency { get; set; } = ""; // 
-        public string Status { get; set; } = "";
-        public bool IsInsuranceClaim { get; set; } // 
+      [PrimaryKey("id")]
+        public int Id {get;set;}  
+        [Column("created_at")] public DateTime Date { get; set; } = DateTime.Now;
+        [Column("ServiceType")] public string ServiceType { get; set; } = ""; 
+        [Column("Adress")] public string Adress { get; set; } = ""; 
+        [Column("Status")] public string Status { get; set; } = "Pending"; 
+        [Column("Cus_id")] public string CusId { get; set; } = "";
+
+        [Column("Urgency")] public string Urgency { get; set; } = "Normal";
+        [Column("Insurance")] public bool Insurance { get; set; } = false;
     }
+   
+
+
+
 }

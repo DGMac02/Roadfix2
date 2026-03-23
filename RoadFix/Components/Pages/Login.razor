@@ -59,20 +59,15 @@
  try
         {
             var session = await supabase.Auth.SignIn(loginModel.Email, loginModel.Password);
-            if (session != null)
-            {
-                Navigation.NavigateTo("/order-services");
-            }
-            else
-            {
-                Navigation.NavigateTo("/LoginEmailorpasserror");
-            }
+            
+                Navigation.NavigateTo("/dashboard");
+           
         }
         catch (GotrueException )
         {
             // Handle authentication errors (e.g., invalid credentials)
             
-            Navigation.NavigateTo("/order-services");
+            Navigation.NavigateTo("/LoginEmailorpasserror");
         }
         
     }

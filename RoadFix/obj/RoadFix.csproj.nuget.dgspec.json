@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\mache\\OneDrive\\Roadfix2\\RoadFix\\RoadFix.csproj": {}
+    "C:\\Users\\mache\\OneDrive\\Roadfix2\\Roadfix\\RoadFix.csproj": {}
   },
   "projects": {
-    "c:\\Users\\mache\\OneDrive\\Roadfix2\\RoadFix\\RoadFix.csproj": {
+    "C:\\Users\\mache\\OneDrive\\Roadfix2\\Roadfix\\RoadFix.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\mache\\OneDrive\\Roadfix2\\RoadFix\\RoadFix.csproj",
+        "projectUniqueName": "C:\\Users\\mache\\OneDrive\\Roadfix2\\Roadfix\\RoadFix.csproj",
         "projectName": "RoadFix",
-        "projectPath": "c:\\Users\\mache\\OneDrive\\Roadfix2\\RoadFix\\RoadFix.csproj",
+        "projectPath": "C:\\Users\\mache\\OneDrive\\Roadfix2\\Roadfix\\RoadFix.csproj",
         "packagesPath": "C:\\Users\\mache\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\mache\\OneDrive\\Roadfix2\\RoadFix\\obj\\",
+        "outputPath": "C:\\Users\\mache\\OneDrive\\Roadfix2\\Roadfix\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mache\\AppData\\Roaming\\NuGet\\NuGet.Config"

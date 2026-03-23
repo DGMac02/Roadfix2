@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3P40PwwuGnU=",
+  "dgSpecHash": "3BhKHtxDqIw=",
   "success": true,
-  "projectFilePath": "c:\\Users\\mache\\OneDrive\\Roadfix2\\RoadFix\\RoadFix.csproj",
+  "projectFilePath": "C:\\Users\\mache\\OneDrive\\Roadfix2\\Roadfix\\RoadFix.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mache\\.nuget\\packages\\functions-csharp\\1.3.2\\functions-csharp.1.3.2.nupkg.sha512",
     "C:\\Users\\mache\\.nuget\\packages\\gotrue-csharp\\4.2.7\\gotrue-csharp.4.2.7.nupkg.sha512",

@@ -1,8 +1,11 @@
-﻿@page "/order-services"
+﻿@page "/services"
+@using Postgrest.Models
 @using Supabase
+@inject Supabase.Client supabase
 @using Microsoft.VisualBasic
 
 @using Roadfix2.Services
+@using System.ComponentModel.DataAnnotations.Schema
 
 
 <PageTitle>Order Services - RoadFix</PageTitle>
@@ -17,55 +20,66 @@
                 <div class="card-body">
                     <EditForm Model="@recOrder" OnValidSubmit="LogOrder" FormName="orderForm">
                             <DataAnnotationsValidator />
-                        <div class="mb-3">
+                        <!--<<div class="mb-3">
                             <label for="name" class="form-label">Full Name *</label>
                             <input type="text" class="form-control" id="name" required>
                         </div>
                             
-                        <!--<div class="mb-3">
+                        div class="mb-3">
                             <label for="email" class="form-label">Email Address *</label>
                             <input type="email" class="form-control" id="email" required>
                         </div>-->
 
                         <div class="mb-3">
                             <label for="phone" class="form-label">Phone Number *</label>
-                            <input type="tel" class="form-control" id="phone" required>
+                            <InputText id="phone" type="tel" @bind-Value="recOrder.phone" placeholder="081-234-5678"  required/> 
+                            <ValidationMessage For="@(() =>recOrder.phone)" />
                         </div>
 
                         <div class="mb-3">
+                            
+                            <InputText type="text" @bind-Value="recOrder.Street"class="form-control" id="address" placeholder="123 Main St" required/>
                             <label for="address" class="form-label">Street Address *</label>
-                            <input type="text" class="form-control" id="address" placeholder="123 Main St" required>
+                            <ValidationMessage For="@(() => recOrder.Street)"/>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="city" class="form-label">City *</label>
-                                <input type="text" class="form-control" id="city" required>
+                                <InputText type="text" @bind-Value="recOrder.City" class="form-control" id="city" required />
+                                
+                                <ValidationMessage For="@(() => recOrder.City)"/>
+                                
                             </div>
                             <div class="col-md-3 mb-3">
-                                <label for="state" class="form-label">State *</label>
-                                <input type="text" class="form-control" id="state" required>
+                                <label for="state" class="form-label">Province *</label>
+                                <InputText type="text" @bind-Value="recOrder.Province" class="form-control" id="state" required />
+                                <ValidationMessage For="@(() => recOrder.Province)"/>
                             </div>
                             <div class="col-md-3 mb-3">
                                 <label for="zip" class="form-label">ZIP Code *</label>
-                                <input type="text" class="form-control" id="zip" required>
+                                <InputText type="text" @bind-Value="recOrder.ZipCode" class="form-control" id="zip" required />
+                                <ValidationMessage For="@(() => recOrder.ZipCode)"/>
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label for="serviceType" class="form-label">Service Type *</label>
-                            <select class="form-select" id="serviceType" required>
+                            <InputSelect @bind-Value="recOrder.Service_Type" class="form-select" id="serviceType" required>
                                 <option value="">Select a service</option>
                                 <option value="detection">Pothole Detection Only</option>
                                 <option value="repair">Pothole Repair</option>
                                 <option value="assessment">Road Assessment</option>
                                 <option value="emergency">Emergency Repair (24/7)</option>
-                            </select>
+                            </InputSelect>
+                            <ValidationMessage For="@(() => recOrder.Service_Type)"/>
                         </div>
 
                         <div class="mb-3">
                             <label for="description" class="form-label">Description of Issue</label>
-                            <textarea class="form-control" id="description" rows="4" placeholder="Please describe the location, size, and severity of the potholes or road issues..."></textarea>
+                            <InputTextArea @bind-Value="recOrder.issueDescription" class="form-control" id="description" rows="4" placeholder="Please describe the location, size, and severity of the potholes or road issues..." />
+                            
+                            <ValidationMessage For="@(() => recOrder.issueDescription)"/>
                         </div>
 
                 <!--      <div class="mb-3">
@@ -78,22 +92,25 @@
                         </div>
 -->
                         <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="insurance">
+                            <InputCheckbox @bind-Value="recOrder.Insurance" class="form-check-input" id="insurance" />
                             <label class="form-check-label" for="insurance">
                                 This is for insurance claim purposes
                             </label>
+                            
+                            <ValidationMessage For="@(() => recOrder.Insurance)"/>
                         </div>
 
                         <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="newsletter" checked>
+                            <InputCheckbox @bind-Value="recOrder.newsletter" class="form-check-input" id="newsletter" />
                             <label class="form-check-label" for="newsletter">
                                 Subscribe to our newsletter for road safety tips and updates
                             </label>
+                            <ValidationMessage For="@(() => recOrder.newsletter)"/>
                         </div>
 
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-lg me-3">Submit Request</button>
-                            <NavLink href="/" class="btn btn-outline-secondary btn-lg">Back to Home</NavLink>
+                            <NavLink href="/dashboard" class="btn btn-primary btn-lg me-3">Submit Request</NavLink>
+                            <NavLink href="/dashboard" class="btn btn-outline-secondary btn-lg">Back to Home</NavLink>
                         </div>
                     </EditForm>
                 </div>
@@ -125,22 +142,30 @@
     </section>
 </div>
 @code {
-    private string Fullname = string.Empty;
+    private string Name = string.Empty;
     private string CellNumber = string.Empty;
 
     private String Address = string.Empty;
 
     [SupplyParameterFromForm] 
 
-    private recordOrder recOrder {get; set;} = new ();
+    private recordOrder recOrder {get; set;} = new recordOrder ();
 
     private async Task LogOrder(){
+            var model = new Order
+            {
+                Adress = recOrder.Adress,
+                Service_Type = recOrder.Service_Type,
+                issueDescription = recOrder.issueDescription,
+                Insurance = recOrder.Insurance
+                };
+                 await supabase.From<Order>().Insert(model);
 
     }
 
-    public class recordOrder(){
+   public class recordOrder(){
         public string FirstName { get; set; } = string.Empty;
-        public string LastName { get; set; } = string.Empty; 
+        public string phone { get; set; } = string.Empty; 
 
         public string Street {get; set;} = string.Empty;
         public string City {get; set;} = string.Empty;
@@ -148,11 +173,30 @@
         public string Province {get; set;} = string.Empty;
 
         public string ZipCode {get; set;} = string.Empty;
+        public string Adress => $"{Street},{City},{Province},{ZipCode}".Trim(',');
 
-        public string ServiceType {get; set;} = string.Empty;
-        public string IssueDescription {get; set;} = string.Empty;
+        public string Service_Type {get; set;} = string.Empty;
+        public string issueDescription {get; set;} = string.Empty;
 
-        public bool insurance {get; set;} = false;
+        public bool Insurance {get; set;} = false;
+        public bool newsletter {get; set;} = false;
 
     }
+    [Table("Order")]
+    class Order :BaseModel{
+        [Column("Adress")]
+        public string Adress {get; set;} = string.Empty;
+
+        [Column("ServiceType")]
+        public string Service_Type {get; set;} = string.Empty;
+
+        [Column("issueDescription")]
+        public string issueDescription {get; set;} = string.Empty;
+
+        [Column("insurance")]
+        public bool Insurance {get; set;} = false;
+        
+    }
+
+
 }

@@ -204,70 +204,85 @@ main[b-e4gbemymqm] {
     }
 }
 /* _content/RoadFix/Components/Pages/Dashboard.razor.rz.scp.css */
-.dashboard-wrapper[b-ntr8es5c3c] {
-    display: flex;
-    min-height: 90vh;
-    background-color: #f4f7f9;
-    border-radius: 20px;
-    overflow: hidden;
-    margin: 20px;
-}
 
-.dashboard-sidebar[b-ntr8es5c3c] {
-    width: 260px;
-    background: #ffffff;
-    border-right: 1px solid #e0e6ed;
-    padding: 2rem 1rem;
-}
+        body[b-ntr8es5c3c], html[b-ntr8es5c3c] {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden; /* Prevents scrolling on the welcome screen */
+        }
+        /* 2. THE FIX: Aggressive Link Reset */
+        /* This ensures the underline NEVER appears and the color stays white */
+        a.main-wrapper[b-ntr8es5c3c], 
+        a.main-wrapper:link[b-ntr8es5c3c], 
+        a.main-wrapper:visited[b-ntr8es5c3c], 
+        a.main-wrapper:hover[b-ntr8es5c3c], 
+        a.main-wrapper:active[b-ntr8es5c3c] {
+            text-decoration: none !important; 
+            color: white !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        /* 2. The Background Image with Fade/Overlay */
+        .hero-bg[b-ntr8es5c3c] {
+            background-color: aliceblue;
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-.user-profile-brief[b-ntr8es5c3c] {
-    text-align: center;
-    margin-bottom: 2rem;
-}
+        /* 3. The Text Box with Animation */
+        .fade-in-box[b-ntr8es5c3c] {
+            background: rgba(0, 34, 255, 0.721); /* Semi-transparent glass effect */
+                    /* Modern blur effect */
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgb(231, 98, 98);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            
+            /* Animation properties */
+            opacity: 0;
+            animation: fadeInTransition-b-ntr8es5c3c 0.5s ease-in forwards;
+        }
+        .fade-in-box:hover[b-ntr8es5c3c] {
+            background: rgba(255, 255, 255, 0.359);
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
 
-.avatar[b-ntr8es5c3c] {
-    width: 60px;
-    height: 60px;
-    background: #0d6efd;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0 auto 0.5rem;
-}
+        h1[b-ntr8es5c3c] {
+            font-size: 3rem;
+            margin-top: 250px;
+            margin-bottom: 250px;
+            margin-left: 400px;
+            margin-right: 400px;
+        }
 
-.nav-link[b-ntr8es5c3c] {
-    color: #495057;
-    border: none;
-    background: none;
-    text-align: left;
-    padding: 0.8rem 1rem;
-    border-radius: 8px;
-    margin-bottom: 0.5rem;
-    width: 100%;
-    transition: all 0.2s;
-}
+        p[b-ntr8es5c3c] {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
 
-.nav-link.active[b-ntr8es5c3c] {
-    background: #e7f1ff;
-    color: #0d6efd;
-    font-weight: 600;
-}
-
-.dashboard-content[b-ntr8es5c3c] {
-    flex: 1;
-    padding: 2.5rem;
-}
-
-.content-card[b-ntr8es5c3c] {
-    background: white;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-}
+        /* 4. The Keyframe for Fading In */
+        @keyframes fadeInTransition-b-ntr8es5c3c {
+            from {
+                opacity: 0;
+                transform: translateY(20px); /* Subtle slide-up effect */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 /* _content/RoadFix/Components/Pages/Login.razor.rz.scp.css */
 /* Container for the entire viewport */
 .login-page-wrapper[b-pwb2g90yzp] {

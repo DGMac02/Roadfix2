@@ -99,5 +99,6 @@ c:\Users\mache\OneDrive\Roadfix2\RoadFix\obj\Debug\net9.0\compressed\uyetq38c17-
 c:\Users\mache\OneDrive\Roadfix2\RoadFix\obj\Debug\net9.0\RoadFix.csproj.Up2Date
 c:\Users\mache\OneDrive\Roadfix2\RoadFix\obj\Debug\net9.0\scopedcss\Components\Pages\Dashboard.razor.rz.scp.css
 c:\Users\mache\OneDrive\Roadfix2\RoadFix\obj\Debug\net9.0\scopedcss\Components\Pages\LoginINV.razor.rz.scp.css
-c:\Users\mache\OneDrive\Roadfix2\RoadFix\obj\Debug\net9.0\compressed\hx1z8g2600-lmy4n2zkyy.gz
-c:\Users\mache\OneDrive\Roadfix2\RoadFix\obj\Debug\net9.0\compressed\xj2fb50zwf-lmy4n2zkyy.gz
+c:\Users\mache\OneDrive\Roadfix2\RoadFix\obj\Debug\net9.0\RoadFix.sourcelink.json
+c:\Users\mache\OneDrive\Roadfix2\RoadFix\obj\Debug\net9.0\compressed\hx1z8g2600-gfnf4hh9js.gz
+c:\Users\mache\OneDrive\Roadfix2\RoadFix\obj\Debug\net9.0\compressed\xj2fb50zwf-gfnf4hh9js.gz
