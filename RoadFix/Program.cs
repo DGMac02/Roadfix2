@@ -1,6 +1,7 @@
 using RoadFix.Components;
 using Supabase;
-using Roadfix2.Services; // Add this at the top
+using Roadfix2.Services;
+ // Add this at the top
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -48,9 +49,9 @@ app.UseHttpsRedirection();
 
 
 app.UseAntiforgery();
-
+app.MapGet("/", () => "RoadFix Web Server is Running!");
 app.MapStaticAssets();
-app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
+app.MapRazorComponents<App>();
+    /*.AddInteractiveServerRenderMode();*/
 
 app.Run();
