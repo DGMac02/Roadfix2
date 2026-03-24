@@ -46,7 +46,7 @@
                             <span class="order-id">#RF-@order.Id.ToString()</span>
                             <h5>@order.ServiceType</h5> @* Matches source select: Detection, Repair, etc. *@
                             <div class="service-meta">
-                                <strong>Location:</strong> @order.Adress <br />
+                                <strong>Address:</strong> @order.Adress <br />
                                 <strong>Urgency:</strong> @order.Urgency  <br />
                                 @if (order.Insurance) { <span class="badge bg-info text-dark">Insurance Purpose</span> } 
                             </div>
@@ -112,7 +112,7 @@ private async Task LoadUserOrders()
 
     public class Order :BaseModel
     {
-      [PrimaryKey("id")]
+        [PrimaryKey("id")]
         public int Id {get;set;}  
         [Column("created_at")] public DateTime Date { get; set; } = DateTime.Now;
         [Column("ServiceType")] public string ServiceType { get; set; } = ""; 
