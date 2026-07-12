@@ -1838,11 +1838,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mache\\OneDrive\\Roadfix2\\RoadFix\\RoadFix.csproj",
+      "projectUniqueName": "C:\\Users\\mache\\Project-Solar\\RoadFix\\RoadFix.csproj",
       "projectName": "RoadFix",
-      "projectPath": "C:\\Users\\mache\\OneDrive\\Roadfix2\\RoadFix\\RoadFix.csproj",
+      "projectPath": "C:\\Users\\mache\\Project-Solar\\RoadFix\\RoadFix.csproj",
       "packagesPath": "C:\\Users\\mache\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mache\\OneDrive\\Roadfix2\\RoadFix\\obj\\",
+      "outputPath": "C:\\Users\\mache\\Project-Solar\\RoadFix\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mache\\AppData\\Roaming\\NuGet\\NuGet.Config"
