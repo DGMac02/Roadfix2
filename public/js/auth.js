@@ -1,6 +1,11 @@
 // Authentication Functions
 
 async function login(email, password) {
+    if (typeof supabase === 'undefined' || !supabase.auth) {
+        showToast('Supabase is not configured. Please update config.js', 'danger');
+        return;
+    }
+
     try {
         const { data, error } = await supabase.auth.signInWithPassword({
             email,
@@ -22,6 +27,11 @@ async function login(email, password) {
 }
 
 async function register(email, password, firstName, lastName) {
+    if (typeof supabase === 'undefined' || !supabase.auth) {
+        showToast('Supabase is not configured. Please update config.js', 'danger');
+        return;
+    }
+
     try {
         const { data, error } = await supabase.auth.signUp({
             email,
@@ -45,6 +55,14 @@ async function register(email, password, firstName, lastName) {
 }
 
 async function logout() {
+    if (typeof supabase === 'undefined' || !supabase.auth) {
+        appState.currentUser = null;
+        appState.isAuthenticated = false;
+        updateAuthNav();
+        navigateTo('home');
+        return;
+    }
+
     try {
         const { error } = await supabase.auth.signOut();
         

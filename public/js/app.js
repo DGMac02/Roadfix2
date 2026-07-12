@@ -40,16 +40,26 @@ function renderPage(page) {
 async function initializeApp() {
     console.log('🚀 Initializing RoadFix App...');
     
-    // Check if user is already logged in
-    const { data: { session } } = await supabase.auth.getSession();
-    
-    if (session) {
-        appState.currentUser = session.user;
-        appState.isAuthenticated = true;
-        console.log('✓ User logged in:', session.user.email);
+    // Check if Supabase is available
+    if (typeof supabase !== 'undefined' && supabase.auth) {
+        try {
+            // Check if user is already logged in
+            const { data: { session } } = await supabase.auth.getSession();
+            
+            if (session) {
+                appState.currentUser = session.user;
+                appState.isAuthenticated = true;
+                console.log('✓ User logged in:', session.user.email);
+            } else {
+                appState.isAuthenticated = false;
+                console.log('✓ No active session');
+            }
+        } catch (error) {
+            console.warn('⚠️ Supabase error:', error.message);
+            appState.isAuthenticated = false;
+        }
     } else {
-        appState.isAuthenticated = false;
-        console.log('✓ No active session');
+        console.warn('⚠️ Supabase not configured. Update config.js with your credentials.');
     }
     
     updateAuthNav();
