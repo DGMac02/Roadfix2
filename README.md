@@ -1,173 +1,219 @@
-# RoadFix - Bootstrap Conversion
+# 🛣️ RoadFix - Pothole Detection & Repair Platform
 
-This project has been successfully converted from a .NET Blazor application to a pure **Bootstrap HTML/CSS/JavaScript** frontend with Node.js Express backend.
+A modern, professional pothole detection and repair service platform built with Bootstrap, Node.js, and Supabase.
 
-## 🎯 Project Structure
+## 🎯 Features
+
+- ✅ **Responsive Bootstrap 5 UI** - Mobile-first design
+- ✅ **User Authentication** - Secure login/register with Supabase Auth
+- ✅ **Service Management** - Order and track pothole repairs
+- ✅ **Interactive Map** - View pothole locations with Leaflet.js
+- ✅ **Service History** - Track all repair requests
+- ✅ **Real-time Updates** - Supabase integration for live data
+
+## 📂 Project Structure
 
 ```
 RoadFix/
-├── wwwroot/                    # Static website files
-│   ├── index.html             # Main entry point (SPA)
+├── public/                      # Static files served by Express
+│   ├── index.html              # Main HTML entry point (SPA)
 │   ├── css/
-│   │   └── app.css           # Bootstrap custom styles
+│   │   └── style.css           # Custom Bootstrap styles
 │   ├── js/
-│   │   ├── app.js            # Main app navigation and routing
-│   │   ├── auth.js           # Authentication functions
-│   │   └── mapbox.js         # Map initialization (Leaflet)
-│   └── [other assets]
+│   │   ├── config.js           # Supabase configuration
+│   │   ├── app.js              # Main app logic & routing
+│   │   ├── auth.js             # Authentication functions
+│   │   └── pages.js            # Page templates & handlers
+│   └── assets/                 # Images, fonts, etc.
 ├── server.js                   # Express.js server
-├── package.json               # Node.js dependencies
-├── .env                       # Environment configuration
-└── README.md                  # This file
+├── package.json                # Dependencies
+├── .env                        # Environment variables
+└── README.md                   # This file
 ```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js (v16 or higher)
 - npm or yarn
+- Supabase account (free tier available)
 
 ### Installation
 
-1. Navigate to the project root:
+1. **Clone/Navigate to project:**
    ```bash
    cd RoadFix
    ```
 
-2. Install dependencies:
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. Configure Supabase:
-   - Update `.env` with your Supabase URL and API key
-   - Update `js/app.js` line 2-3 with your Supabase credentials
+3. **Configure Supabase:**
+   - Update `.env` with your Supabase credentials:
+     ```
+     VITE_SUPABASE_URL=https://your-project.supabase.co
+     VITE_SUPABASE_ANON_KEY=your-anon-key
+     ```
+   - Update `public/js/config.js` with the same credentials
 
-4. Start the development server:
+4. **Start the server:**
    ```bash
    npm start
    ```
 
-5. Open your browser and visit: `http://localhost:5000`
+5. **Open in browser:**
+   ```
+   http://localhost:3000
+   ```
+
+## 📚 Pages
+
+| Page | Route | Description |
+|------|-------|-------------|
+| Home | `/` | Landing page with service information |
+| Login | `/login` | User authentication |
+| Register | `/register` | New user registration |
+| Dashboard | `/dashboard` | User dashboard with quick links |
+| Services | `/services` | Order pothole repair services |
+| History | `/history` | View service request history |
+| Map | `/map` | Interactive map of pothole locations |
+| Profile | `/profile` | User profile and settings |
 
 ## 🔧 Development
 
-For hot-reload during development:
+### Run with hot-reload:
 ```bash
 npm run dev
 ```
 
-## 📚 Features
-
-### Pages
-- **Home** - Landing page with service information
-- **Login** - User authentication via Supabase
-- **Register** - New user registration
-- **Dashboard** - User dashboard with quick access to services
-- **Services** - Order pothole repair services
-- **History** - View service request history
-- **Map** - Interactive map showing pothole locations
-
-### Technology Stack
-- **Frontend**: Bootstrap 5, HTML5, Vanilla JavaScript
-- **Backend**: Express.js, Node.js
-- **Database**: Supabase (PostgreSQL)
-- **Mapping**: Leaflet.js
-- **Authentication**: Supabase Auth (GoTrue)
+### Build for production:
+```bash
+npm run build
+```
 
 ## 🔐 Authentication
 
-The app uses Supabase's built-in authentication system:
-- Sign up and login functionality
-- Session management via localStorage
-- Protected routes require authentication
+Uses **Supabase Auth (GoTrue)** for secure authentication:
+- Email/password registration
+- Session management
+- Protected routes
+- Automatic session persistence
+
+## 📊 Database Schema
+
+### Required Supabase Tables
+
+**service_requests**
+```sql
+id: uuid (primary key)
+user_id: uuid (foreign key → auth.users)
+location: text
+description: text
+phone: text
+status: text ('pending', 'in-progress', 'completed')
+created_at: timestamp
+updated_at: timestamp
+```
+
+**potholes**
+```sql
+id: uuid (primary key)
+location: text
+latitude: float
+longitude: float
+severity: text ('low', 'medium', 'high')
+status: text ('reported', 'in-repair', 'repaired')
+created_at: timestamp
+updated_at: timestamp
+```
 
 ## 🗺️ Map Integration
 
-The map page uses Leaflet.js to display:
-- Interactive map centered on Johannesburg
-- Pothole markers fetched from Supabase database
-
-## 📝 Configuration
-
-### Environment Variables (.env)
-```
-SUPABASE_URL=your-supabase-url
-SUPABASE_KEY=your-supabase-key
-PORT=5000
-NODE_ENV=development
-```
+Uses **Leaflet.js** for interactive mapping:
+- OpenStreetMap tiles
+- Pothole markers with popups
+- Responsive zoom/pan controls
 
 ## 📦 Dependencies
 
-- **express** - Web framework
-- **cors** - Cross-Origin Resource Sharing
-- **dotenv** - Environment configuration
+| Package | Purpose |
+|---------|---------|
+| express | Web server framework |
+| cors | Cross-Origin Resource Sharing |
+| dotenv | Environment configuration |
+| bootstrap | CSS framework (CDN) |
+| leaflet | Mapping library (CDN) |
+| @supabase/supabase-js | Database & auth client (CDN) |
 
 ## 🎨 Styling
 
-All styles are in `wwwroot/css/app.css` using:
-- Bootstrap 5 framework
-- Custom CSS for unique components
-- Responsive design for mobile/tablet/desktop
-- Gradient backgrounds and modern UI
+- **Framework:** Bootstrap 5 (CDN)
+- **Color Scheme:** Purple/Blue gradient with modern accents
+- **Responsive:** Mobile-first approach
+- **Custom CSS:** [public/css/style.css](public/css/style.css)
 
-## 🚧 Database Tables (Supabase)
+## 🚢 Deployment
 
-The app expects these tables in Supabase:
-
-### service_requests
-```sql
-- id (uuid)
-- user_id (uuid)
-- location (text)
-- description (text)
-- phone (text)
-- status (text) - pending, in-progress, completed
-- created_at (timestamp)
+### Vercel
+```bash
+npm i -g vercel
+vercel
 ```
 
-### potholes
-```sql
-- id (uuid)
-- location (text)
-- latitude (float)
-- longitude (float)
-- status (text)
-- created_at (timestamp)
+### Heroku
+```bash
+heroku create roadfix
+git push heroku main
 ```
 
-## 🔄 API Integration
+### Railway
+Connect GitHub repo and deploy
 
-All database operations use Supabase JavaScript client:
-```javascript
-import { createClient } from '@supabase/supabase-js'
+## 🔒 Environment Variables
+
+```env
+# Supabase
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-key
+
+# Server
+PORT=3000
+NODE_ENV=development
 ```
 
 ## 🐛 Troubleshooting
 
-### "Cannot find module" errors
-```bash
-npm install
-```
+| Issue | Solution |
+|-------|----------|
+| Cannot find module | Run `npm install` |
+| Supabase connection fails | Check `.env` credentials |
+| Map not loading | Verify Leaflet CDN accessible |
+| Auth not working | Check Supabase project is active |
 
-### Supabase connection issues
-- Verify `.env` credentials
-- Check Supabase project is active
-- Ensure CORS is configured in Supabase settings
+## 📖 Useful Resources
 
-### Map not loading
-- Verify Leaflet CDN is accessible
-- Check browser console for errors
-- Ensure latitude/longitude are valid
+- [Bootstrap 5 Docs](https://getbootstrap.com/docs/5.0/)
+- [Supabase Docs](https://supabase.com/docs)
+- [Leaflet Docs](https://leafletjs.com/reference.html)
+- [Express Docs](https://expressjs.com/)
 
-## 📖 Additional Resources
+## 📝 License
 
-- [Bootstrap Documentation](https://getbootstrap.com/docs/)
-- [Supabase Documentation](https://supabase.com/docs)
-- [Leaflet.js Documentation](https://leafletjs.com/)
-- [Express.js Guide](https://expressjs.com/)
+MIT © 2025 RoadFix Team
 
-## 📄 License
+## 🤝 Contributing
 
-RoadFix © 2025. All rights reserved.
+Contributions welcome! Please follow the existing code style and structure.
+
+## 📞 Support
+
+For issues or questions:
+- Email: support@roadfix.com
+- Phone: (555) 123-ROAD
+
+---
+
+**Made with ❤️ for better roads**
